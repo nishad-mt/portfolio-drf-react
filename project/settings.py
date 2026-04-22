@@ -8,12 +8,8 @@ env = environ.Env()
 
 env_path = os.path.join(BASE_DIR, ".env")
 
-print("ENV PATH:", env_path)
-print("FILE EXISTS:", os.path.exists(env_path))
-
 environ.Env.read_env(env_path)
 
-print("AFTER LOAD:", os.environ.get("SECRET_KEY"))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +24,6 @@ DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
-print("SECRET_KEY FROM ENV:", env('SECRET_KEY', default='NOT FOUND'))
 # Application definition
 
 INSTALLED_APPS = [
