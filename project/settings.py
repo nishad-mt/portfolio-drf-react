@@ -1,12 +1,24 @@
-from pathlib import Path
-import environ
 import os
+import environ
+from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+env_path = os.path.join(BASE_DIR, ".env")
+
+print("ENV PATH:", env_path)
+print("FILE EXISTS:", os.path.exists(env_path))
+
+environ.Env.read_env(env_path)
+
+print("AFTER LOAD:", os.environ.get("SECRET_KEY"))
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read_env(str(BASE_DIR / '.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -16,7 +28,7 @@ DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
-
+print("SECRET_KEY FROM ENV:", env('SECRET_KEY', default='NOT FOUND'))
 # Application definition
 
 INSTALLED_APPS = [
@@ -33,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -109,5 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 CORS_ALLOW_ALL_ORIGINS = True
