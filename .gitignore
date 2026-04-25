@@ -1,0 +1,36 @@
+# Environment variables
+
+.env
+
+# Python
+
+**pycache**/
+*.py[cod]
+*.sqlite3
+
+# Virtual environment
+
+venv/
+env/
+
+# Django
+
+*.log
+media/
+staticfiles/
+
+# Node (React + Vite)
+
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE / Editor
+
+.vscode/
+.idea/
+
+# OS files
+
+.DS_Store
+Thumbs.db

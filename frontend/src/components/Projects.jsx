@@ -16,6 +16,7 @@ function Project() {
         <div key={p.id}>
           <h3>{p.title}</h3>
           <p>{p.description}</p>
+          <p>{p.live_link}</p>
         </div>
       ))}
     </section>
