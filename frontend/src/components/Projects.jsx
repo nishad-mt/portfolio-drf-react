@@ -28,7 +28,7 @@ const projects = [
     id: 'project3',
     live: false,
     num: '03',
-    title: '[Your 3rd project]',
+    title: 'Decision Engine API',
     description:
       'Add your third project here — a CLI tool, REST API, data dashboard, automation script, or anything you built that shows your Python skills.',
     stack: ['Python', 'Your stack'],

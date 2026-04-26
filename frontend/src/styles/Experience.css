@@ -1,0 +1,181 @@
+/* ============================================
+   Experience.css — Nishad M T Portfolio
+   ============================================ */
+
+.experience {
+  background-color: var(--hero-bg);
+  padding: 7rem clamp(1.5rem, 8vw, 8rem);
+  font-family: var(--font-body);
+  border-top: 1px solid var(--hero-border);
+}
+
+.experience-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.exp-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Timeline ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  position: relative;
+}
+
+/* ── Left column ── */
+.timeline-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  padding-top: 4px;
+}
+
+.timeline-period {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-align: right;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.timeline-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.timeline-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--hero-bg);
+  box-shadow: 0 0 10px rgba(168, 255, 120, 0.4);
+  flex-shrink: 0;
+}
+
+.timeline-track {
+  width: 1px;
+  flex: 1;
+  min-height: 40px;
+  background: var(--hero-border);
+  margin-top: 6px;
+}
+
+/* ── Card ── */
+.timeline-card {
+  background: var(--hero-surface);
+  border: 1px solid var(--hero-border);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.timeline-card:hover {
+  border-color: rgba(168, 255, 120, 0.18);
+}
+
+.timeline-card-top {
+  margin-bottom: 10px;
+}
+
+.type-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.timeline-org {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.timeline-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timeline-points li {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.timeline-points li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.7rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .experience {
+    padding: 5rem 1.25rem;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .timeline-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .timeline-period {
+    margin-bottom: 0;
+  }
+
+  .timeline-connector {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .timeline-track {
+    display: none;
+  }
+}
