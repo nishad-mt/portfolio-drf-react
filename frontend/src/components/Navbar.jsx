@@ -4,7 +4,7 @@ import '../styles/Navbar.css'
 const NAV_LINKS = [
   { href: '#home',       label: 'Home',       index: '01' },
   { href: '#about',      label: 'About',      index: '02' },
-  { href: '#experience', label: 'Experience', index: '03' },
+  { href: '#experience', label: 'Journey', index: '03' },
   { href: '#projects',   label: 'Projects',   index: '04' },
   { href: '#contact',    label: 'Contact',    index: '05' },
 ]
@@ -70,7 +70,7 @@ function Navbar() {
 
         {/* CTA — desktop only */}
         <a href="#contact" className="navbar-cta" onClick={() => handleLinkClick('#contact')}>
-          Explore
+          Let's talk
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5"
                   strokeLinecap="round" strokeLinejoin="round"/>
