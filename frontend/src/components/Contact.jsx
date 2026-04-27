@@ -8,11 +8,30 @@ const links = [
 ]
 
 function Contact() {
-  const [sent, setSent] = useState(false)
+  const [name, setName]       = useState('')
+  const [email, setEmail]     = useState('')
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [sent, setSent]       = useState(false)
+  const [error, setError]     = useState(null)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    setSent(true)
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      })
+      if (!res.ok) throw new Error()
+      setSent(true)
+    } catch {
+      setError('Something went wrong. Try emailing me directly.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -59,21 +78,51 @@ function Contact() {
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-field">
                   <label htmlFor="name">Name</label>
-                  <input id="name" type="text" placeholder="Your name" required />
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
                 </div>
+
                 <div className="form-field">
                   <label htmlFor="email">Email</label>
-                  <input id="email" type="email" placeholder="you@email.com" required />
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="you@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
+
                 <div className="form-field">
                   <label htmlFor="message">Message</label>
-                  <textarea id="message" rows="4" placeholder="What's on your mind?" required />
+                  <textarea
+                    id="message"
+                    rows="4"
+                    placeholder="What's on your mind?"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                  />
                 </div>
-                <button type="submit" className="form-submit">
-                  <span>Send message</span>
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+
+                {error && (
+                  <p className="form-error">{error}</p>
+                )}
+
+                <button type="submit" className="form-submit" disabled={loading}>
+                  <span>{loading ? 'Sending...' : 'Send message'}</span>
+                  {!loading && (
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
                 </button>
               </form>
             )}
