@@ -4,9 +4,9 @@ import '../styles/About.css'
 function About() {
   const facts = [
     { label: 'Degree', value: 'BSc Computer Science' },
-    { label: 'Internship', value: '6 months · Python Developer' },
+    { label: 'Internship', value: '7 months · Python Developer' },
     { label: 'Projects', value: '3 built · 2 live hosted' },
-    { label: 'Location', value: 'Tamil Nadu, India' },
+    { label: 'Location', value: 'kerala, India' },
   ]
 
   return (

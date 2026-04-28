@@ -47,7 +47,7 @@ function Navbar() {
         {/* Logo / wordmark */}
         <a href="#home" className="navbar-logo" onClick={() => handleLinkClick('#home')} aria-label="Go to top">
           <span className="logo-bracket">&lt;</span>
-          <span className="logo-name">NMT</span>
+          <span className="logo-name">nishad_mt</span>
           <span className="logo-bracket">/&gt;</span>
         </a>
 

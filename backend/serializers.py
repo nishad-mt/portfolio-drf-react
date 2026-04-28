@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project
+from .models import Project,Contact
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -25,3 +25,8 @@ class ProjectSerializer(serializers.ModelSerializer):
         if obj.image and request:
             return request.build_absolute_uri(obj.image.url)
         return None
+    
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
