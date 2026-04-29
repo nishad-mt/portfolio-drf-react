@@ -7,25 +7,28 @@
 
 /* ── Design tokens ── */
 :root {
-  --hero-bg:        #0b0d0f;
-  --hero-surface:   #111416;
-  --hero-border:    rgba(255, 255, 255, 0.07);
-  --accent:         #a8ff78;       /* code-green */
-  --accent-dim:     rgba(168, 255, 120, 0.12);
-  --accent-glow:    rgba(168, 255, 120, 0.25);
-  --text-primary:   #eceee9;
+  --hero-bg: #0b0d0f;
+  --hero-surface: #111416;
+  --hero-border: rgba(255, 255, 255, 0.07);
+  --accent: #a8ff78;
+  /* code-green */
+  --accent-dim: rgba(168, 255, 120, 0.12);
+  --accent-glow: rgba(168, 255, 120, 0.25);
+  --text-primary: #eceee9;
   --text-secondary: #8a9080;
-  --text-muted:     #4a5040;
+  --text-muted: #4a5040;
 
-  --font-display:   'Syne', sans-serif;
-  --font-body:      'DM Sans', sans-serif;
-  --font-mono:      'DM Mono', monospace;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
 
-  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ── Reset ── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -69,7 +72,7 @@
 .orb-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(168,255,120,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 255, 120, 0.08) 0%, transparent 70%);
   top: -100px;
   right: -80px;
   animation: orb-drift 12s ease-in-out infinite alternate;
@@ -78,15 +81,20 @@
 .orb-2 {
   width: 360px;
   height: 360px;
-  background: radial-gradient(circle, rgba(100,180,255,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(100, 180, 255, 0.06) 0%, transparent 70%);
   bottom: -60px;
   left: 10%;
   animation: orb-drift 16s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes orb-drift {
-  from { transform: translate(0, 0); }
-  to   { transform: translate(30px, 20px); }
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(30px, 20px);
+  }
 }
 
 /* ── Content container ── */
@@ -124,8 +132,15 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 6px var(--accent-glow); }
-  50%       { box-shadow: 0 0 18px var(--accent-glow); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 6px var(--accent-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 18px var(--accent-glow);
+  }
 }
 
 /* ── Heading ── */
@@ -184,7 +199,9 @@
 }
 
 @keyframes underline-grow {
-  to { width: 100%; }
+  to {
+    width: 100%;
+  }
 }
 
 /* ── Role tag ── */
@@ -196,7 +213,7 @@
   font-size: clamp(0.85rem, 2vw, 1.05rem);
   color: var(--text-secondary);
   background: var(--accent-dim);
-  border: 1px solid rgba(168,255,120,0.18);
+  border: 1px solid rgba(168, 255, 120, 0.18);
   border-radius: 4px;
   padding: 6px 14px;
   margin-bottom: 1.75rem;
@@ -261,7 +278,7 @@
 
 .stack-pill:hover {
   color: var(--accent);
-  border-color: rgba(168,255,120,0.3);
+  border-color: rgba(168, 255, 120, 0.3);
   background: var(--accent-dim);
 }
 
@@ -314,7 +331,7 @@
 }
 
 .btn-secondary:hover {
-  border-color: rgba(255,255,255,0.2);
+  border-color: rgba(255, 255, 255, 0.2);
   color: var(--text-primary);
   transform: translateY(-2px);
 }
@@ -355,9 +372,17 @@
 }
 
 @keyframes scroll-sweep {
-  0%   { left: -100%; }
-  50%  { left: 0%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 0%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 /* ── Decorative code snippet ── */
@@ -391,7 +416,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(168,255,120,0.04) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(168, 255, 120, 0.04) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -416,7 +441,9 @@
 }
 
 @keyframes fade-in {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ── Responsive ── */
@@ -448,7 +475,10 @@
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
