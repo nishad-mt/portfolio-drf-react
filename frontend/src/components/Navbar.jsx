@@ -4,31 +4,59 @@ import '../styles/Navbar.css'
 const NAV_LINKS = [
   { href: '#home',       label: 'Home',       index: '01' },
   { href: '#about',      label: 'About',      index: '02' },
-  { href: '#experience', label: 'Journey', index: '03' },
+  { href: '#experience', label: 'Journey',    index: '03' },
   { href: '#projects',   label: 'Projects',   index: '04' },
   { href: '#contact',    label: 'Contact',    index: '05' },
 ]
+
+const SECTION_IDS = NAV_LINKS.map(l => l.href.replace('#', ''))
 
 function Navbar() {
   const [scrolled,   setScrolled]   = useState(false)
   const [menuOpen,   setMenuOpen]   = useState(false)
   const [activeLink, setActiveLink] = useState('#home')
 
-  /* Scroll listener — adds glass backdrop after 40px */
+  /* ── Scroll listener — glass backdrop ── */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  /* Close mobile menu on resize to desktop */
+  /* ── Intersection Observer — active link follows scroll ── */
+  useEffect(() => {
+    const observers = []
+
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveLink(`#${id}`)
+          }
+        },
+        {
+          rootMargin: '-40% 0px -55% 0px', // triggers when section is in middle of viewport
+          threshold: 0,
+        }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
+
+  /* ── Close mobile menu on resize ── */
   useEffect(() => {
     const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  /* Prevent body scroll when mobile menu is open */
+  /* ── Prevent body scroll when mobile menu open ── */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -41,10 +69,12 @@ function Navbar() {
 
   return (
     <>
-      <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}${menuOpen ? ' navbar--open' : ''}`}
-           role="navigation" aria-label="Main navigation">
-
-        {/* Logo / wordmark */}
+      <nav
+        className={`navbar${scrolled ? ' navbar--scrolled' : ''}${menuOpen ? ' navbar--open' : ''}`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        {/* Logo */}
         <a href="#home" className="navbar-logo" onClick={() => handleLinkClick('#home')} aria-label="Go to top">
           <span className="logo-bracket">&lt;</span>
           <span className="logo-name">nishad_mt</span>
@@ -68,7 +98,7 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* CTA — desktop only */}
+        {/* CTA */}
         <a href="#contact" className="navbar-cta" onClick={() => handleLinkClick('#contact')}>
           Let's talk
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -77,7 +107,7 @@ function Navbar() {
           </svg>
         </a>
 
-        {/* Hamburger — mobile only */}
+        {/* Hamburger */}
         <button
           className={`hamburger${menuOpen ? ' hamburger--open' : ''}`}
           onClick={() => setMenuOpen(o => !o)}
@@ -113,13 +143,17 @@ function Navbar() {
           ))}
         </ul>
 
-        <a href="#contact" className="mobile-cta" onClick={() => handleLinkClick('#contact')}
-           tabIndex={menuOpen ? 0 : -1}>
+        <a
+          href="#contact"
+          className="mobile-cta"
+          onClick={() => handleLinkClick('#contact')}
+          tabIndex={menuOpen ? 0 : -1}
+        >
           Hire me
         </a>
       </div>
 
-      {/* Backdrop overlay */}
+      {/* Backdrop */}
       {menuOpen && (
         <div className="menu-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />
       )}

@@ -25,7 +25,17 @@
 
   --navbar-height:  64px;
 }
-
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b0d0f;
+}
 /* ── Base navbar ── */
 .navbar {
   position: fixed;
@@ -358,6 +368,7 @@
     box-shadow 0.2s,
     transform 0.2s;
 }
+
 
 .mobile-menu--open .mobile-cta {
   opacity: 1;
