@@ -4,7 +4,7 @@ import '../styles/Navbar.css'
 const NAV_LINKS = [
   { href: '#home',       label: 'Home',       index: '01' },
   { href: '#about',      label: 'About',      index: '02' },
-  { href: '#experience', label: 'Journey',    index: '03' },
+  { href: '#skills',     label: 'Skills',     index: '03' },
   { href: '#projects',   label: 'Projects',   index: '04' },
   { href: '#contact',    label: 'Contact',    index: '05' },
 ]
@@ -74,13 +74,6 @@ function Navbar() {
         role="navigation"
         aria-label="Main navigation"
       >
-        {/* Logo */}
-        <a href="#home" className="navbar-logo" onClick={() => handleLinkClick('#home')} aria-label="Go to top">
-          <span className="logo-bracket">&lt;</span>
-          <span className="logo-name">nishad_mt</span>
-          <span className="logo-bracket">/&gt;</span>
-        </a>
-
         {/* Desktop links */}
         <ul className="nav-links" role="list">
           {NAV_LINKS.map(({ href, label, index }) => (

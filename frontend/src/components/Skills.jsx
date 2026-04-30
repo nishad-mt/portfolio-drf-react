@@ -26,19 +26,14 @@ const skillGroups = [
 
 function Skills() {
   return (
-    <section id="skills" className="skills">
-      <div className="skills-inner">
-
-        <div className="section-eyebrow">
-          <span className="eyebrow-num">02</span>
-          <span className="eyebrow-line" />
-          <span className="eyebrow-label">Skills</span>
-        </div>
+    <section id="skills" className="skills-section">
+      <div className="skills-container">
 
         <div className="skills-header">
-          <h2 className="skills-heading">
-            What I work with
-          </h2>
+          <div className="subheading-section">
+            <span>Capabilities</span>
+          </div>
+          <h2 className="heading-section">What I <span className="text-gradient">Work With</span></h2>
           <p className="skills-sub">
             Tools and technologies I've used in real projects — not just read about.
           </p>
@@ -46,7 +41,7 @@ function Skills() {
 
         <div className="skills-grid">
           {skillGroups.map((group) => (
-            <div className="skill-group" key={group.id}>
+            <div className="skill-card glass-panel" key={group.id}>
               <div className="skill-group-label">{group.label}</div>
               <div className="skill-tags">
                 {group.skills.map((skill) => (

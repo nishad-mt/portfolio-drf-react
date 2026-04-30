@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../styles/Contact.css'
 
 const links = [
-  { label: 'Gmail', value: 'nishadpaul64@gmail.com', href: 'mailto:nishadpaul64@gmail.com' },
+  { label: 'Email', value: 'nishadpaul64@gmail.com', href: 'mailto:nishadpaul64@gmail.com' },
   { label: 'GitHub', value: 'github.com/nishad-mt', href: 'https://github.com/nishad-mt' },
   { label: 'LinkedIn', value: 'linkedin.com/in/nishad-mt', href: 'https://www.linkedin.com/in/nishad-mt/' },
 ]
@@ -35,21 +35,16 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="contact">
-      <div className="contact-inner">
-
-        <div className="section-eyebrow">
-          <span className="eyebrow-num">05</span>
-          <span className="eyebrow-line" />
-          <span className="eyebrow-label">Contact</span>
-        </div>
+    <section id="contact" className="contact-section">
+      <div className="contact-container">
 
         <div className="contact-grid">
+          {/* Left Column */}
           <div className="contact-left">
-            <h2 className="contact-heading">
-              Let's work<br />
-              <span className="accent-word">together.</span>
-            </h2>
+            <div className="subheading-section">
+              <span>Connect</span>
+            </div>
+            <h2 className="heading-section">Let's Work<br /><span className="text-gradient">Together.</span></h2>
             <p className="contact-body">
               I'm actively looking for Python developer roles — full-time or freelance.
               If you have a project, an opportunity, or just want to say hello, I'd love to hear from you.
@@ -57,83 +52,109 @@ function Contact() {
 
             <div className="contact-links">
               {links.map(({ label, value, href }) => (
-                <a href={href} className="contact-link-row" key={label} target="_blank" rel="noopener noreferrer">
-                  <span className="contact-link-label">{label}</span>
-                  <span className="contact-link-val">{value}</span>
-                  <svg className="contact-link-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                <a href={href} className="contact-link-card glass-panel" key={label} target="_blank" rel="noopener noreferrer">
+                  <div className="link-info">
+                    <span className="link-label">{label}</span>
+                    <span className="link-val">{value}</span>
+                  </div>
+                  <div className="link-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                 </a>
               ))}
             </div>
           </div>
 
+          {/* Right Column (Form) */}
           <div className="contact-right">
-            {sent ? (
-              <div className="form-success">
-                <span className="dot" />
-                <p>Message sent — I'll get back to you soon.</p>
-              </div>
-            ) : (
-              <form className="contact-form" onSubmit={handleSubmit} noValidate>
-                <div className="form-field">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="you@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    rows="4"
-                    placeholder="What's on your mind?"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {error && (
-                  <p className="form-error">{error}</p>
-                )}
-
-                <button type="submit" className="form-submit" disabled={loading}>
-                  <span>{loading ? 'Sending...' : 'Send message'}</span>
-                  {!loading && (
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <div className="form-wrapper glass-panel">
+              {sent ? (
+                <div className="form-success">
+                  <div className="success-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4L12 14.01l-3-3" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
+                  </div>
+                  <h3>Message Sent!</h3>
+                  <p>Thanks for reaching out. I'll get back to you as soon as possible.</p>
+                </div>
+              ) : (
+                <form className="contact-form" onSubmit={handleSubmit} noValidate>
+                  <div className="form-header">
+                    <h3>Send a Message</h3>
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="John Doe"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="message">Message</label>
+                    <textarea
+                      id="message"
+                      rows="4"
+                      placeholder="Tell me about your project..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  {error && (
+                    <div className="form-error">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                      </svg>
+                      {error}
+                    </div>
                   )}
-                </button>
-              </form>
-            )}
+
+                  <button type="submit" className="btn-primary form-submit" disabled={loading}>
+                    <span>{loading ? 'Sending...' : 'Send Message'}</span>
+                    {!loading && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                      </svg>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
 
       </div>
 
       <footer className="site-footer">
-        <span className="footer-name">Nishad M T</span>
-        <span className="footer-copy">Built with React &amp; Django · © 2026</span>
+        <div className="footer-content">
+          <span className="footer-name">Nishad M T</span>
+          <span className="footer-copy">Built with React &amp; Django · © 2026</span>
+        </div>
       </footer>
     </section>
   )

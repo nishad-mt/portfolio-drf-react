@@ -1,75 +1,87 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import '../styles/Hero.css'
+import profilePhoto from '../assets/profile.PNG'
 
 function Hero() {
+  const stageRef = useRef(null)
+  const rafRef = useRef(null)
+  const cur = useRef({ x: 0, y: 0 })
+  const tgt = useRef({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const stage = stageRef.current
+    if (!stage) return
+
+    const onMove = (e) => {
+      const r = stage.getBoundingClientRect()
+      const cx = r.left + r.width / 2
+      const cy = r.top + r.height / 2
+
+      tgt.current = {
+        x: ((e.clientY - cy) / (r.height / 2)) * -6,
+        y: ((e.clientX - cx) / (r.width / 2)) * 6,
+      }
+    }
+
+    const lerp = (a, b, t) => a + (b - a) * t
+
+    const tick = () => {
+      cur.current.x = lerp(cur.current.x, tgt.current.x, 0.08)
+      cur.current.y = lerp(cur.current.y, tgt.current.y, 0.08)
+
+      if (stage) {
+        stage.style.transform = `translateY(-50%) rotateX(${cur.current.x}deg) rotateY(${cur.current.y}deg)`
+      }
+
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    document.addEventListener('mousemove', onMove)
+    rafRef.current = requestAnimationFrame(tick)
+
+    return () => {
+      document.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
   return (
     <section id="home" className="hero">
 
-      {/* Background grid */}
-      <div className="hero-grid" aria-hidden="true">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div key={i} className="grid-line" />
-        ))}
+      {/* Background */}
+      <div className="hero-bg" />
+
+      {/* Photo */}
+      <div ref={stageRef} className="hero-photo-stage">
+        <div className="photo-card">
+          <img src={profilePhoto} alt="Nishad M T" />
+        </div>
       </div>
 
-      {/* Floating accent orbs */}
-      <div className="orb orb-1" aria-hidden="true" />
-      <div className="orb orb-2" aria-hidden="true" />
-
+      {/* Content */}
       <div className="hero-content">
 
-        {/* Eyebrow label */}
-        <div className="hero-eyebrow">
-          <span className="dot" />
-          <span>Build  Scale  Ship</span>
-        </div>
+        <span className="hero-tag">Available for Work</span>
 
         <h1 className="hero-heading">
-          <span className="line line-1"></span>
-          <span className="line line-2 name-highlight">Nishad </span>
+          Nishad <span>M T.</span>
         </h1>
 
-        <div className="hero-role">
-          <span className="role-bracket">&lt;</span>
-          <span className="role-text">Python Full Stack Developer</span>
-          <span className="role-bracket"> /&gt;</span>
-        </div>
+        <h2 className="hero-role">
+          Python Full Stack Developer
+        </h2>
 
         <p className="hero-description">
-          I build scalable web applications using <strong>Django</strong> and <strong>React</strong>,
-          focusing on clean design and efficient performance.
+          I build scalable and high-performance web applications
+          using Python and React, focusing on clean architecture
+          and real-world impact.
         </p>
 
-        <div className="hero-stack">
-          {['Django', 'React', 'Python', 'REST APIs', 'PostgreSQL'].map((tech) => (
-            <span key={tech} className="stack-pill">{tech}</span>
-          ))}
-        </div>
-
-        <div className="hero-buttons">
-          <a href="#projects" className="btn btn-primary">
-            <span>View Projects</span>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+        <div className="hero-actions">
+          <a href="#projects" className="btn-primary">
+            View Projects
           </a>
-          <a href="#contact" className="btn btn-secondary">Get In Touch</a>
         </div>
-
-        {/* Scroll cue */}
-        <div className="scroll-cue" aria-hidden="true">
-          <div className="scroll-line" />
-          <span>scroll</span>
-        </div>
-      </div>
-
-      {/* Decorative code snippet */}
-      <div className="hero-code-deco" aria-hidden="true">
-        <pre><code>{`def build_something(
-  idea: str,
-  passion: bool = True
-) -> Product:
-  return deploy(idea)`}</code></pre>
       </div>
 
     </section>
