@@ -35,13 +35,11 @@ function Hero() {
 
         <motion.div 
           className="hero-photo-wrapper"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
         >
-          <div className="photo-pill">
-            <img src={profilePhoto} alt="Nishad M T" className="profile-img" />
-          </div>
+          <img src={profilePhoto} alt="Nishad M T" className="profile-img" />
         </motion.div>
       </div>
     </section>

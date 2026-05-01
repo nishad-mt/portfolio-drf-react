@@ -6,10 +6,10 @@
   --text-main: #ffffff;
   --text-muted: #7a7a7a;
   
-  /* Aurora Glow */
-  --aurora-1: #ff0055;
-  --aurora-2: #0055ff;
-  --aurora-3: #00ffaa;
+  /* Aurora Glow - White & Blacks */
+  --aurora-1: rgba(255, 255, 255, 0.4);
+  --aurora-2: rgba(180, 180, 180, 0.3);
+  --aurora-3: rgba(100, 100, 100, 0.5);
   
   /* Surfaces */
   --surface-glass: rgba(255, 255, 255, 0.01);
@@ -63,7 +63,7 @@ body {
 .aurora-blob {
   position: absolute;
   filter: blur(100px);
-  opacity: 0.3;
+  opacity: 0.15;
   animation: float-blob 20s infinite alternate ease-in-out;
 }
 
