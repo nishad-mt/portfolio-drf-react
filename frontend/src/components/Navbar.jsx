@@ -76,16 +76,14 @@ function Navbar() {
       >
         {/* Desktop links */}
         <ul className="nav-links" role="list">
-          {NAV_LINKS.map(({ href, label, index }) => (
+          {NAV_LINKS.map(({ href, label }) => (
             <li key={href}>
               <a
                 href={href}
                 className={`nav-link${activeLink === href ? ' nav-link--active' : ''}`}
                 onClick={() => handleLinkClick(href)}
               >
-                <span className="nav-index">{index}</span>
-                <span className="nav-label">{label}</span>
-                <span className="nav-underline" aria-hidden="true" />
+                {label}
               </a>
             </li>
           ))}
@@ -121,7 +119,7 @@ function Navbar() {
         aria-hidden={!menuOpen}
       >
         <ul className="mobile-links" role="list">
-          {NAV_LINKS.map(({ href, label, index }, i) => (
+          {NAV_LINKS.map(({ href, label }, i) => (
             <li key={href} style={{ '--i': i }}>
               <a
                 href={href}
@@ -129,7 +127,6 @@ function Navbar() {
                 onClick={() => handleLinkClick(href)}
                 tabIndex={menuOpen ? 0 : -1}
               >
-                <span className="mobile-index">{index}</span>
                 {label}
               </a>
             </li>

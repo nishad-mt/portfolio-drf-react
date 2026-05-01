@@ -1,189 +1,92 @@
 .experience-section {
+  padding: 8rem 5vw;
   position: relative;
-  padding: 8rem 2rem;
-  overflow: hidden;
   z-index: 1;
 }
 
 .experience-container {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .experience-header {
-  margin-bottom: 5rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-bottom: 6rem;
 }
 
-/* ── Timeline ── */
-.timeline {
+.experience-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  border-top: 1px solid var(--surface-border);
 }
 
-.timeline-item {
+.experience-row {
   display: grid;
   grid-template-columns: 200px 1fr;
-  gap: 2rem;
-  position: relative;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--surface-border);
+  transition: all var(--transition-slow);
 }
 
-/* ── Left column ── */
-.timeline-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
-  padding-top: 2.5rem;
+.experience-row:hover {
+  background: linear-gradient(to right, transparent, var(--surface-glass), transparent);
 }
 
-.timeline-period {
+.exp-period {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
-  text-align: right;
-  margin-bottom: 12px;
-  white-space: nowrap;
 }
 
-.timeline-connector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-.timeline-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 3px solid var(--bg-main);
-  box-shadow: 0 0 15px currentColor;
-  flex-shrink: 0;
-}
-
-.bg-accent-primary { background: var(--accent-primary); color: var(--accent-primary); }
-.bg-accent-secondary { background: var(--accent-secondary); color: var(--accent-secondary); }
-
-.timeline-track {
-  width: 2px;
-  flex: 1;
-  min-height: 50px;
-  background: var(--surface-border);
-  margin-top: 8px;
-}
-
-/* ── Card ── */
-.timeline-card {
-  padding: 2.5rem;
-  margin-bottom: 2rem;
-  transition: all var(--transition-fast);
-}
-
-.timeline-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: var(--surface-glass-hover);
-  box-shadow: var(--shadow-glow);
-}
-
-.timeline-card-top {
-  margin-bottom: 1.25rem;
-}
-
-.type-badge {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid transparent;
-}
-
-.text-accent-primary { color: #d2a8ff; }
-.border-accent-primary { border-color: rgba(138, 43, 226, 0.3); }
-
-.text-accent-secondary { color: #a5d6ff; }
-.border-accent-secondary { border-color: rgba(79, 172, 254, 0.3); }
-
-.timeline-title {
+.exp-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 500;
   color: var(--text-main);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
-.timeline-org {
+.exp-org {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
 }
 
-.timeline-points {
+.exp-points {
   list-style: none;
-  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.timeline-points li {
-  font-size: 1rem;
-  color: var(--text-main);
-  opacity: 0.85;
-  line-height: 1.6;
-  padding-left: 1.5rem;
+.exp-points li {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-muted);
   position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.6;
 }
 
-.timeline-points li::before {
-  content: '→';
+.exp-points li::before {
+  content: '—';
   position: absolute;
   left: 0;
-  color: var(--accent-secondary);
-  font-family: var(--font-mono);
+  color: var(--text-muted);
+  opacity: 0.5;
 }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
   .experience-section {
-    padding: 5rem 1.5rem;
+    padding: 4rem 1.2rem;
   }
 
-  .timeline-item {
+  .experience-row {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .timeline-left {
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    padding-top: 0;
-  }
-
-  .timeline-period {
-    margin-bottom: 0;
-    order: 2;
-  }
-
-  .timeline-connector {
-    flex-direction: row;
-    align-items: center;
-    order: 1;
-    flex: 0;
-  }
-
-  .timeline-track {
-    display: none;
+    padding: 3rem 0;
   }
 }

@@ -1,88 +1,152 @@
 .skills-section {
   position: relative;
-  padding: 8rem 2rem;
-  overflow: hidden;
+  padding: 10rem 5vw;
   z-index: 1;
 }
 
 .skills-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-.skills-header {
-  margin-bottom: 4rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.skills-sub {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 500px;
-  margin-top: 1.5rem;
-}
-
-.skills-grid {
+.skills-split {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 100px 1fr;
+  gap: 6rem;
+  align-items: flex-start;
 }
 
-.skill-card {
-  padding: 2.5rem 2rem;
-  transition: all var(--transition-fast);
+.skills-left {
+  position: sticky;
+  top: 150px;
+  height: 100%;
 }
 
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: var(--surface-glass-hover);
-  box-shadow: var(--shadow-glow);
-}
-
-.skill-group-label {
+.skills-label {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: var(--accent-secondary);
-  letter-spacing: 0.1em;
+  color: var(--text-muted);
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: inline-block;
+  opacity: 0.7;
 }
 
-.skill-tags {
+.skills-heading {
+  margin-bottom: 5rem;
+}
+
+.skills-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  border-top: 1px solid var(--surface-border);
 }
 
-.skill-tag {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--surface-border);
+  position: relative;
+  cursor: crosshair;
+}
+
+/* Fluid sweep on hover */
+.skill-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--surface-glass);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--transition-slow);
+  z-index: -1;
+}
+
+.skill-row:hover::before {
+  transform: scaleY(1);
+}
+
+.skill-group-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1;
+  transition: all var(--transition-slow);
+  position: relative;
+}
+
+.skill-row:hover .skill-group-title {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-sm);
-  padding: 8px 16px;
-  transition: all var(--transition-fast);
-  cursor: default;
+  transform: translateX(20px);
 }
 
-.skill-tag:hover {
-  color: white;
-  border-color: var(--accent-primary);
-  background: rgba(138, 43, 226, 0.2);
-  transform: scale(1.05);
+.skill-items-wrapper {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all var(--transition-slow);
+}
+
+.skill-items {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2rem;
+  transform: translateY(20px);
+  transition: transform var(--transition-slow);
+}
+
+.skill-row:hover .skill-items-wrapper {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.skill-row:hover .skill-items {
+  transform: translateY(0);
+  padding-left: 20px;
+}
+
+@media (max-width: 1024px) {
+  .skills-split {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .skills-left {
+    position: relative;
+    top: 0;
+  }
+  .skills-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {
   .skills-section {
-    padding: 5rem 1.5rem;
+    padding: 6rem 1.2rem;
   }
-  .skills-grid {
-    grid-template-columns: 1fr;
+  .skill-group-title {
+    font-size: 2.5rem;
+  }
+  .skill-row {
+    padding: 2rem 0;
+  }
+  
+  /* On mobile, let's just show the items so users don't have to hover */
+  .skill-items-wrapper {
+    max-height: 200px;
+    opacity: 1;
+  }
+  .skill-items {
+    transform: translateY(0);
+    margin-top: 1rem;
+    font-size: 0.85rem;
   }
 }

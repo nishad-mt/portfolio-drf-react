@@ -1,98 +1,70 @@
-import React from 'react'
-import '../styles/About.css'
-
-const facts = [
-  { label: 'Education',  value: 'BSc Computer Science', icon: '🎓' },
-  { label: 'Experience', value: '7+ months Professional', icon: '💼' },
-  { label: 'Projects',   value: '3 Built · 2 Live', icon: '🚀' },
-  { label: 'Location',   value: 'Kerala, India (Remote)', icon: '📍' },
-]
+import React from 'react';
+import { motion } from 'framer-motion';
+import '../styles/About.css';
 
 function About() {
   return (
     <section id="about" className="about-section">
       <div className="about-container">
         
-        <div className="about-header">
-          <div className="subheading-section">
-            <span>Discover</span>
-          </div>
-          <h2 className="heading-section">About <span className="text-gradient">Me</span></h2>
-        </div>
+        <div className="about-split">
+          {/* Left sticky label */}
+          <motion.div 
+            className="about-left"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <span className="about-label">01 // PHILOSOPHY</span>
+          </motion.div>
 
-        <div className="about-content">
-          
-          {/* Visuals Side */}
-          <div className="about-visuals">
-            <div className="status-card glass-panel">
-              <div className="status-header">
-                <span className="dot pulse"></span>
-                <span className="status-label">Open for Opportunities</span>
+          {/* Right massive content */}
+          <div className="about-right">
+            <motion.h2 
+              className="about-headline"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              I build <span className="highlight-pill">robust systems</span> that feel effortless.
+            </motion.h2>
+
+            <motion.p 
+              className="about-subheadline"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.1 }}
+            >
+              My focus is on designing secure backend architectures while crafting cinematic, high-performance interfaces. I believe in writing code that scales, bridging the gap between <span className="text-muted">raw server power</span> and <span className="text-muted">fluid human interaction.</span> Less noise, more impact.
+            </motion.p>
+
+            <motion.div 
+              className="about-stats"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="stat-block">
+                <span className="stat-number">Full Stack</span>
+                <span className="stat-text">DEVELOPMENT</span>
               </div>
-              <div className="status-body">
-                <h3>Currently available for freelance & full-time roles.</h3>
-                <p>Based in Kerala, India — available for remote work globally.</p>
+              <div className="stat-block">
+                <span className="stat-number">Kerala, IN</span>
+                <span className="stat-text">REMOTE WORLDWIDE</span>
               </div>
-              <div className="status-footer">
-                <div className="status-badge glass-panel">
-                  <span className="badge-icon">🐍</span> Python
-                </div>
-                <div className="status-badge glass-panel">
-                  <span className="badge-icon">⚛️</span> React
-                </div>
+              <div className="stat-block">
+                <span className="stat-number">Python/React</span>
+                <span className="stat-text">CORE STACK</span>
               </div>
-            </div>
-          </div>
-
-          {/* Details Side */}
-          <div className="about-details">
-            <h3 className="about-subtitle">
-              Engineering <span className="text-gradient">Impact.</span>
-            </h3>
-            
-            <div className="about-description">
-              <p>
-                I am a Python Full Stack Developer focused on building robust backend architectures and sleek, high-performance user interfaces.
-              </p>
-              <p>
-                Bridging the gap between design and engineering, I specialize in creating scalable systems that don't just work, but deliver a premium user experience.
-              </p>
-            </div>
-
-            <div className="core-focus-list">
-               <div className="focus-item">
-                 <span className="focus-dot"></span>
-                 <div className="focus-text">
-                   <h4>Backend Architecture</h4>
-                   <p>Designing secure REST APIs and scalable database models using Python & Django.</p>
-                 </div>
-               </div>
-               <div className="focus-item">
-                 <span className="focus-dot"></span>
-                 <div className="focus-text">
-                   <h4>Frontend Engineering</h4>
-                   <p>Crafting responsive, cinematic interfaces with React and modern CSS.</p>
-                 </div>
-               </div>
-            </div>
-
-            <div className="stats-grid">
-              {facts.map(({ label, value, icon }) => (
-                <div className="stat-card glass-panel" key={label}>
-                  <div className="stat-icon">{icon}</div>
-                  <div className="stat-info">
-                    <span className="stat-value">{value}</span>
-                    <span className="stat-label">{label}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
+            </motion.div>
           </div>
         </div>
+
       </div>
     </section>
-  )
+  );
 }
 
-export default About
+export default About;
